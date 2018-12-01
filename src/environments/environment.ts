@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  parseServerUrl: 'https://eyenight-dev.herokuapp.com/parse',
+  parseAppId: '1TcAvt0wD6YDxEffIJ7qJtRQvMXzu7',
+  parseClientKey: 'XUNfi612hLNdS6V8TTb582YTou8qSX'
 };

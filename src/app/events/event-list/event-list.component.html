@@ -1,0 +1,25 @@
+<div class="event-list" *ngIf="event.name">
+  <div class="info">
+    <h3 *ngIf="event.name">{{event.name}}</h3>
+    <h4 *ngIf="event.locationName">{{event.locationName}}</h4>
+
+    <h5 *ngIf="event.address || event.city">
+      {{event.address}}
+      <span *ngIf="event.city">{{event.city}}</span>
+    </h5>
+
+    <h5 *ngIf="event.startDate && event.endDate">
+      {{event.startDate.iso | date:'d MMM yyyy'}} - {{event.endDate.iso | date:'d MMM yyyy'}}
+    </h5>
+  </div>
+
+  <div class="products">
+    <h4 [class.no-products]="event.products.length == 0">{{event.products.length > 0 ? 'Products:' : 'No products.'}}</h4>
+    <ng-container *ngFor="let product of event.products">
+      <div class="product">
+        <span class="name">{{product.name}}</span>
+        <span class="price">€{{product.price | number:'1.2-2'}}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

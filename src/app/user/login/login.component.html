@@ -1,0 +1,39 @@
+<div class="box-wrap">
+  <div class="container">
+
+    <div class="form-wrap">
+      <h1>log in</h1>
+
+      <form #userForm="ngForm" class="custom-form" (ngSubmit)="onSubmit()">
+        <div class="fieldset">
+          <div class="errors" [hidden]="!showError">
+            {{errorMsg}}
+          </div>
+
+          <input type="email" placeholder="Email Address"
+            required
+            #emailRef="ngModel"
+            [(ngModel)]="user.email" name="email">
+          <div class="errors" [hidden]="!(emailRef.invalid && (emailRef.dirty || emailRef.touched))">
+            {{emailRef.errors?.required ? 'Email is required.' : ''}}
+          </div>
+        </div>
+
+        <div class="fieldset">
+          <input type="password" placeholder="Password"
+            required
+            [(ngModel)]="user.password" name="password"
+            #passwordRef="ngModel">
+          <div class="errors" [hidden]="!(passwordRef.invalid && (passwordRef.dirty || passwordRef.touched))">
+            {{passwordRef.errors?.required ? 'Password is required.' : ''}}
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="emailRef.invalid || passwordRef.invalid">Log in</button>
+      </form>
+
+      <p class="other-link">Don't have an account? <a href="#" routerLink="/signup">Sign up.</a></p>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,236 @@
+@import './variables';
+@import './mixins';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+button:focus,
+input:focus {
+  outline: none;
+}
+
+body {
+  font-family: $oxygen;
+  font-size: 15px;
+}
+
+.container {
+  padding: 0 20px;
+}
+
+/*
+* Signup and Login styles
+*/
+.box-wrap {
+  position: relative;
+  background: linear-gradient(135deg, #fff 0%, #f3f6f8 100%);
+
+  &:before {
+    content: '';
+    position: fixed;
+    left: -22%;
+    top: 60%;
+    right: 0;
+    width: 125%;
+    height: 100%;
+    background: linear-gradient(135deg, #f3f6f8 0%, #fff 100%);
+    @include transform(rotate(15deg));
+  }
+
+  > .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .form-wrap {
+      width: 330px;
+
+      h1 {
+        font-family: $noto;
+        color: $blue;
+        margin: 0 0 15px;
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .other-link {
+        color: $grey;
+        font-size: 12px;
+        margin: 15px 0 0;
+
+        a {
+          color: $grey;
+          text-decoration: underline;
+          @include transition(all .1s linear);
+
+          &:hover {
+            color: $grey-dark;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+/*
+* Signup and Login form
+*/
+.custom-form {
+  width: 100%;
+  overflow: hidden;
+
+  .fieldset {
+    margin: 0 0 15px;
+    position: relative;
+
+    .errors {
+      color: $red;
+      font-size: 12px;
+      margin: 5px 0 0;
+
+      &:first-child {
+        margin-bottom: 10px;
+      }
+    }
+
+    .success {
+      color: green;
+      font-size: 12px;
+      margin: 5px 0 0;
+
+      &:nth-child(2) {
+        margin-bottom: 10px;
+      }
+
+      a {
+        color: green;
+      }
+    }
+  }
+
+  label[for="profile-picture"] {
+    display: block;
+    color: $grey;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    background-color: #fff;
+    border: 1px solid #E1EAF0;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 100%;
+    @include transition(all 0.1s linear);
+    @include border-radius(5px);
+
+    &:hover {
+      color: $grey-dark;
+    }
+  }
+
+  input[type="file"] {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    color: $grey;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    background-color: #fff;
+    border: 1px solid #E1EAF0;
+    padding: 10px 15px;
+    cursor: text;
+    width: 100%;
+    @include transition(all 0.1s linear);
+    @include border-radius(5px);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:hover {
+      color: $grey-dark;
+
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: $grey-dark;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $grey-dark;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $grey-dark;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $grey-dark;
+      }
+    }
+
+    &.ng-invalid {
+      &:focus {
+        border-left-width: 3px;
+        border-left-color: $red;
+        // color: $red;
+      }
+    }
+
+    &.ng-valid {
+      &:focus {
+        border-left-width: 3px;
+        border-left-color: $blue;
+        color: $blue;
+      }
+    }
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: $grey;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      color: $grey;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      color: $grey;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      color: $grey;
+    }
+  }
+
+  .btn-submit {
+    border: 0;
+    color: #fff;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    background-color: $blue;
+    padding: 13px 15px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    @include transition(all .1s linear);
+
+    &:hover {
+      background-color: $blue-dark;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: $blue;
+      }
+    }
+  }
+}

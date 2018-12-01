@@ -1,0 +1,19 @@
+<div class="box-wrap">
+  <nav>
+    <div class="container">
+      <h1>events</h1>
+      <button type="button" (click)="logout()">log out</button>
+    </div>
+  </nav>
+
+  <div class="events-wrap">
+    <div class="container">
+      <div class="events" *ngIf="events">
+        <ng-container *ngFor="let event of events">
+          <app-event-list [event]="event"></app-event-list>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+</div>

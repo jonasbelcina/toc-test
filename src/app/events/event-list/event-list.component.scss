@@ -1,0 +1,102 @@
+@import '~sass/styles';
+
+.event-list {
+  padding: 70px 15px;
+  display: flex;
+  @include transition(all .2s linear);
+  border: 1px solid transparent;
+
+  @include md {
+    flex-wrap: wrap;
+    padding: 35px 0;
+  }
+
+  // &:hover {
+  //   background: rgba(255, 255, 255, 0.6);
+  //   border-color: #f3f6f8;
+  // }
+
+  .info {
+    flex: 0 0 50%;
+
+    @include md {
+      flex: 0 0 100%;
+    }
+  }
+
+  h3 {
+    font-family: $noto;
+    color: $blue-dark;
+    font-size: 32px;
+    margin: 0 0 5px;
+    font-weight: normal;
+  }
+
+  h4 {
+    font-family: $noto;
+    color: $grey-dark;
+    font-size: 16px;
+    margin: 0 0 20px;
+    letter-spacing: 0.5px;
+
+    &.no-products {
+      color: $grey-dark;
+    }
+  }
+
+  h5 {
+    color: $grey-dark;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0 0 10px;
+    letter-spacing: 0.5px;
+    font-weight: normal;
+
+    span {
+      display: block;
+    }
+  }
+
+  .products {
+    margin-top: 79px;
+    flex: 0 0 30%;
+
+    @include md {
+      margin-top: 20px;
+      flex: 0 0 100%;
+    }
+
+    .product {
+      display: flex;
+
+      @include md {
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid #eee;
+        }
+      }
+
+      > span {
+        flex: 0 0 70%;
+        color: $grey-dark;
+        font-size: 14px;
+        line-height: 18px;
+        margin: 0 0 10px;
+        letter-spacing: 0.5px;
+
+        &.price {
+          flex: 0 0 30%;
+          text-align: right;
+        }
+
+        @include md {
+          margin-bottom: 0;
+        }
+      }
+    }/* .product */
+
+  } /* .products */
+
+} /* .event-list */

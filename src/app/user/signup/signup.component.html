@@ -1,0 +1,57 @@
+<div class="box-wrap">
+  <div class="container">
+
+    <div class="form-wrap">
+      <h1>sign up</h1>
+
+      <form #userForm="ngForm" class="custom-form" (ngSubmit)="onSubmit()">
+        <div class="fieldset">
+          <div class="success" [hidden]="!userCreated">Your account has been successfully created.</div>
+          <div class="success" [hidden]="!userCreated">Please <a routerLink="/login">login.</a></div>
+
+          <div class="errors" [hidden]="!emailExists">
+            {{errorMsg}}
+          </div>
+
+          <input type="email" placeholder="Email Address"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            #emailRef="ngModel"
+            [(ngModel)]="user.email" name="email">
+            <div class="errors" [hidden]="!emailRef.errors?.pattern && !(emailRef.invalid && (emailRef.dirty || emailRef.touched))">
+                {{emailRef.errors?.pattern
+                  ? 'Please enter a valid email.'
+                  : (emailRef.errors?.required ? 'Email is required.' : '')}}
+            </div>
+        </div>
+
+        <div class="fieldset">
+          <input type="password" placeholder="Password"
+            required
+            minlength="6"
+            [(ngModel)]="user.password" name="password"
+            #passwordRef="ngModel">
+            <div class="errors" [hidden]="!(passwordRef.invalid && (passwordRef.dirty || passwordRef.touched))">
+              {{passwordRef.errors?.minlength
+                ? 'Password should be at least 6 characters.'
+                : (passwordRef.errors?.required ? 'Password is required.' : '')}}
+            </div>
+        </div>
+
+        <div class="fieldset">
+          <label for="profile-picture">{{image.name}}</label>
+          <input type="file" id="profile-picture" (change)="onImageChange($event)" accept="image/*">
+          <div class="errors" [hidden]="!invalidImage">Image not uploaded. Please try uploading a smaller image (less than 1000 pixels in width and height and less than 1MB in size).</div>
+        </div>
+
+        <!-- <img src="{{imgSrc}}" id="uploaded-image" alt=""> -->
+
+        <button type="submit" class="btn-submit"
+          [disabled]="emailRef.invalid || passwordRef.invalid">Create account</button>
+      </form>
+
+      <p class="other-link">Already have an account? <a href="#" routerLink="/login">Log in.</a></p>
+    </div>
+
+  </div>
+</div>
