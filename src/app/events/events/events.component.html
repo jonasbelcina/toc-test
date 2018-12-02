@@ -2,7 +2,11 @@
   <nav>
     <div class="container">
       <h1>events</h1>
-      <button type="button" (click)="logout()">log out</button>
+
+      <div class="profile" (click)="menuActive = !menuActive" [class.menu-active]="menuActive">
+        <img src="{{userImage ? userImage : 'assets/images/placeholder-user1.png'}}" alt="">
+        <button type="button" (click)="logout()">log out</button>
+      </div>
     </div>
   </nav>
 

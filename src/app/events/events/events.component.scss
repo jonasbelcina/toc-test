@@ -25,19 +25,61 @@ nav {
     line-height: 1;
   }
 
-  button {
-    font-family: $noto;
-    font-size: 14px;
-    color: $grey;
-    text-decoration: none;
+  .profile {
     margin-left: auto;
-    border: 0;
-    background: none;
-    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 
     &:hover {
-      color: $grey-dark;
+      @media (min-width: 768px) {
+        button {
+          opacity: 1;
+          z-index: 1;
+          right: 100%;
+        }
+      }
     }
+
+    img {
+      width: 42px;
+      height: 42px;
+      @include border-radius(50%);
+      object-fit: cover;
+    }
+
+    button {
+      font-family: $noto;
+      font-size: 14px;
+      color: $grey;
+      text-decoration: none;
+      border: 0;
+      padding: 15px;
+      background: none;
+      cursor: pointer;
+      position: absolute;
+      right: -100%;
+      width: 80px;
+      opacity: 0;
+      z-index: -1;
+      @include transition(all .3s linear);
+
+      &:hover {
+        color: $grey-dark;
+      }
+    }
+
+    &.menu-active {
+      button {
+        @include md {
+          opacity: 1;
+          z-index: 1;
+          right: 100%;
+        }
+      }
+    }
+
   }
 }
 

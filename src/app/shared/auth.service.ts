@@ -32,29 +32,6 @@ export class AuthService {
     return this.http.get(environment.parseServerUrl + '/users/me', this.httpHeader());
   }
 
-  // check if user is logged in
-  isLoggedIn() {
-    if (this.getToken()) {
-      this.validateToken().subscribe(
-        data => {
-          const user: any = data;
-          console.log(user);
-
-          if (user.code == 209) {
-            return false;
-          } else {
-            console.log(true);
-            return true;
-          }
-        },
-        err => {
-          console.log(err);
-          return false;
-        }
-      );
-    }
-  }
-
   // login a user
   login(data): Observable<Object> {
     return this.http.post(

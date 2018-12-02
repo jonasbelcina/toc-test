@@ -21,13 +21,19 @@ export class UserService {
     );
   }
 
+  // upload user picture
   uploadProfilePicture(data, name, type): Observable<Object> {
     return this.http.post(environment.parseServerUrl + '/files/' + name, data, this.profilePictureHeader(type));
   }
 
-  // get users
-  getUsers(): Observable<Object> {
-    return this.http.get(environment.parseServerUrl + '/users', this.httpHeader());
+  // update user profile
+  updateProfile(data): Observable<Object> {
+    return this.http.post(environment.parseServerUrl + '/classes/UserProfile', data, this.httpHeader());
+  }
+
+  // get user profile
+  getUserProfile(data): Observable<Object> {
+    return this.http.get(environment.parseServerUrl + '/classes/UserProfile?' + data, this.httpHeader());
   }
 
   httpHeader() {

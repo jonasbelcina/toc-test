@@ -12,6 +12,8 @@ import { AuthService } from '../../shared/auth.service';
 export class EventsComponent implements OnInit {
   events: any;
   products: any;
+  userImage: string;
+  menuActive: boolean = false;
 
   constructor(
     private eventsService: EventsService,
@@ -21,8 +23,10 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.getEvents();
+    this.getUserImage();
   }
 
+  // get events from database
   getEvents(): void {
     this.eventsService.getEvents().subscribe(
       data => {
@@ -57,6 +61,7 @@ export class EventsComponent implements OnInit {
     );
   }
 
+  // get products from database
   getProducts() {
     this.eventsService.getProducts().subscribe(
       data => {
@@ -90,6 +95,8 @@ export class EventsComponent implements OnInit {
         // remove token from localStorage
         this.authService.deleteToken();
         this.authService.getToken();
+        // remove user profile picture
+        localStorage.removeItem('userImage');
 
         this.router.navigate(['login']);
       },
@@ -99,4 +106,9 @@ export class EventsComponent implements OnInit {
     );
   }
 
+  getUserImage(): void {
+    const userImage = localStorage.getItem('userImage');
+    if (userImage)
+      this.userImage = userImage;
+  }
 }

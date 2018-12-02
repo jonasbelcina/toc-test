@@ -37,6 +37,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(userData).subscribe(
       data => {
         const _data : any = data;
+
+        if (_data.sessionToken) {
+          this.getUserProfile(_data);
+        }
         // save token to localStorage
         this.authService.setToken(_data.sessionToken);
         this.router.navigate(['events']);
@@ -45,6 +49,30 @@ export class LoginComponent implements OnInit {
         // console.log(err);
         this.showError = true;
         this.errorMsg = err.error.error;
+      }
+    );
+  }
+
+  // get user profile
+  getUserProfile(user): void {
+    const queryObject = {
+      userId: user.objectId
+    };
+
+    const query = 'where=' + JSON.stringify(queryObject);
+
+    this.userService.getUserProfile(query).subscribe(
+      data => {
+        const results: any = data;
+        const profile = results.results[0];
+
+        if (profile && profile.image) {
+          // save profile picture to local storage
+          localStorage.setItem('userImage', profile.image.url);
+        }
+      },
+      err => {
+        console.log(err);
       }
     );
   }
