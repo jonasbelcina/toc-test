@@ -8,12 +8,20 @@
         <button type="button" (click)="logout()">log out</button>
       </div>
     </div>
+
+    <div class="filters">
+      <div class="container">
+        <input type="text" id="searchName" [(ngModel)]="nameQuery" placeholder="Event name" [class.has-value]="nameQuery != ''">
+        <input type="text" id="searchLocation" [(ngModel)]="locationQuery" placeholder="Location (street, city, etc.)" [class.has-value]="locationQuery != ''">
+        <input type="text" id="searchProduct" [(ngModel)]="productQuery" placeholder="Product name" [class.has-value]="productQuery != ''">
+      </div>
+    </div>
   </nav>
 
   <div class="events-wrap">
     <div class="container">
       <div class="events" *ngIf="events">
-        <ng-container *ngFor="let event of events">
+        <ng-container *ngFor="let event of events | search : nameQuery | product : productQuery | location : locationQuery">
           <app-event-list [event]="event"></app-event-list>
         </ng-container>
       </div>

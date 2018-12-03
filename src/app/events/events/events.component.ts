@@ -14,6 +14,9 @@ export class EventsComponent implements OnInit {
   products: any;
   userImage: string;
   menuActive: boolean = false;
+  nameQuery: string = '';
+  productQuery: string = '';
+  locationQuery: string = '';
 
   constructor(
     private eventsService: EventsService,
@@ -35,20 +38,24 @@ export class EventsComponent implements OnInit {
         let eventsArr = []; // events array holder
 
         for (let i = 0; i < _events.length; i++) {
-          // create object to hold event
-          const event = {
-            id: _events[i].objectId,
-            name: _events[i].name,
-            locationName: _events[i].locationName,
-            address: _events[i].address,
-            city: _events[i].city,
-            startDate: _events[i].startDate,
-            endDate: _events[i].endDate,
-            products: []
-          };
 
-          // push event object to events array holder
-          eventsArr.push(event);
+          // check if event has at least a name, if not event will not be displayed
+          if (_events[i].name) {
+            // create object to hold event
+            const event = {
+              id: _events[i].objectId,
+              name: _events[i].name,
+              locationName: _events[i].locationName,
+              address: _events[i].address,
+              city: _events[i].city,
+              startDate: _events[i].startDate,
+              endDate: _events[i].endDate,
+              products: []
+            };
+
+            // push event object to events array holder
+            eventsArr.push(event);
+          }
         }
 
         this.events = eventsArr;

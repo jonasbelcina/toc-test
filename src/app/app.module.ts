@@ -14,6 +14,9 @@ import { LoginComponent } from './user/login/login.component';
 import { EventsComponent } from './events/events/events.component';
 import { EventsService } from './events/events.service';
 import { EventListComponent } from './events/event-list/event-list.component';
+import { SearchPipe } from './events/search.pipe';
+import { ProductPipe } from './events/product.pipe';
+import { LocationPipe } from './events/location.pipe';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { EventListComponent } from './events/event-list/event-list.component';
     SignupComponent,
     LoginComponent,
     EventsComponent,
-    EventListComponent
+    EventListComponent,
+    SearchPipe,
+    ProductPipe,
+    LocationPipe
   ],
   imports: [
     BrowserModule,
